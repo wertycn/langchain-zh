@@ -1,20 +1,19 @@
 # Chroma
 
-This page covers how to use the Chroma ecosystem within LangChain.
-It is broken into two parts: installation and setup, and then references to specific Chroma wrappers.
+本页介绍如何在LangChain中使用Chroma生态系统。
+它分为两个部分：安装和设置以及特定Chroma包装器的引用。
 
-## Installation and Setup
-- Install the Python package with `pip install chromadb`
-## Wrappers
+## 安装和设置
+- 使用 `pip install chromadb` 安装Python包
+
+## 包装器
 
 ### VectorStore
 
-There exists a wrapper around Chroma vector databases, allowing you to use it as a vectorstore,
-whether for semantic search or example selection.
+存在一个围绕Chroma向量数据库的包装器，可以将其用作向量库，无论是用于语义搜索还是示例选择。
 
-To import this vectorstore:
+要导入此向量库:
 ```python
 from langchain.vectorstores import Chroma
 ```
-
-For a more detailed walkthrough of the Chroma wrapper, see [this notebook](../modules/indexes/vectorstores/getting_started.ipynb)
+针对更详细的 Chroma 包装器介绍，您可以参考[此笔记本](../modules/indexes/vectorstores/getting_started.ipynb)。

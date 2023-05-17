@@ -1,29 +1,26 @@
 # PGVector
 
-This page covers how to use the Postgres [PGVector](https://github.com/pgvector/pgvector) ecosystem within LangChain
-It is broken into two parts: installation and setup, and then references to specific PGVector wrappers.
+本页面介绍如何在LangChain中使用Postgres [PGVector](https://github.com/pgvector/pgvector)生态系统。
+它分为两部分：安装和设置，并提供了特定PGVector包装器的参考。
 
-## Installation
-- Install the Python package with `pip install pgvector`
+## 安装
+- 使用`pip install pgvector`命令安装Python包。
 
+## 设置
+1. 第一步是创建一个已安装`pgvector`扩展的数据库。 
 
-## Setup
-1. The first step is to create a database with the `pgvector` extension installed.
+    按照[PGVector Installation Steps](https://github.com/pgvector/pgvector#installation)的步骤安装数据库和扩展。使用Docker镜像最方便。
 
-    Follow the steps at [PGVector Installation Steps](https://github.com/pgvector/pgvector#installation) to install the database and the extension. The docker image is the easiest way to get started.
-
-## Wrappers
+## 包装器
 
 ### VectorStore
 
-There exists a wrapper around Postgres vector databases, allowing you to use it as a vectorstore,
-whether for semantic search or example selection.
+存在一个Postgres向量数据库的包装器，允许您将其用作向量存储，无论是用于语义搜索还是用于示例选择。
 
-To import this vectorstore:
+导入此向量存储：
 ```python
 from langchain.vectorstores.pgvector import PGVector
 ```
+### 使用说明
 
-### Usage
-
-For a more detailed walkthrough of the PGVector Wrapper, see [this notebook](../modules/indexes/vectorstores/examples/pgvector.ipynb)
+若需进一步了解PGVector Wrapper，请查看[该notebook](../modules/indexes/vectorstores/examples/pgvector.ipynb)以获取更详细的操作步骤。

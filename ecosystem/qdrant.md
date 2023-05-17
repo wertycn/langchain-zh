@@ -1,20 +1,19 @@
 # Qdrant
 
-This page covers how to use the Qdrant ecosystem within LangChain.
-It is broken into two parts: installation and setup, and then references to specific Qdrant wrappers.
+本页面说明如何在LangChain中使用Qdrant生态系统。
+它分为两个部分：安装和设置，以及对特定Qdrant包装器的引用。
 
-## Installation and Setup
-- Install the Python SDK with `pip install qdrant-client`
-## Wrappers
+## 安装和设置
+- 使用`pip install qdrant-client`安装Python SDK。
+
+## 包装器
 
 ### VectorStore
 
-There exists a wrapper around Qdrant indexes, allowing you to use it as a vectorstore,
-whether for semantic search or example selection.
+存在一个围绕Qdrant索引的包装器，使您可以将其用作矢量存储，无论是用于语义搜索还是示例选择。
 
-To import this vectorstore:
+要导入此vectorstore：
 ```python
 from langchain.vectorstores import Qdrant
 ```
-
-For a more detailed walkthrough of the Qdrant wrapper, see [this notebook](../modules/indexes/vectorstores/examples/qdrant.ipynb)
+想要更加详细地了解Qdrant包装器的使用，请参考[此笔记本](../modules/indexes/vectorstores/examples/qdrant.ipynb)。

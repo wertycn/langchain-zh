@@ -1,18 +1,15 @@
-# Getting Started
+# 入门指南
 
-Tools are functions that agents can use to interact with the world.
-These tools can be generic utilities (e.g. search), other chains, or even other agents.
+工具是智能体与世界进行交互的功能。这些工具可以是通用实用工具（例如搜索），其他链，甚至是其他智能体。
 
-Currently, tools can be loaded with the following snippet:
-
+目前，可以使用以下代码片段加载工具：
 ```python
 from langchain.agents import load_tools
 tool_names = [...]
 tools = load_tools(tool_names)
 ```
-
-Some tools (e.g. chains, agents) may require a base LLM to use to initialize them.
-In that case, you can pass in an LLM as well:
+有些工具（如 chains、agents）可能需要一个基础的LLM来初始化使用。
+在这种情况下，你可以传递一个LLM：
 
 ```python
 from langchain.agents import load_tools
@@ -20,143 +17,143 @@ tool_names = [...]
 llm = ...
 tools = load_tools(tool_names, llm=llm)
 ```
+下面是所有支持的工具及相关信息的列表：
 
-Below is a list of all supported tools and relevant information:
+- 工具名称：LLM用于指代该工具的名称。
+- 工具描述：传递给LLM的工具描述。
+- 注意事项：不传递给LLM的工具的注意事项。
+- 需要LLM：此工具是否需要初始化LLM。
+- （可选）额外参数：初始化此工具所需要的额外参数。
 
-- Tool Name: The name the LLM refers to the tool by.
-- Tool Description: The description of the tool that is passed to the LLM.
-- Notes: Notes about the tool that are NOT passed to the LLM.
-- Requires LLM: Whether this tool requires an LLM to be initialized.
-- (Optional) Extra Parameters: What extra parameters are required to initialize this tool.
-
-## List of Tools
+## 工具列表
 
 **python_repl**
 
-- Tool Name: Python REPL
-- Tool Description: A Python shell. Use this to execute python commands. Input should be a valid python command. If you expect output it should be printed out.
-- Notes: Maintains state.
-- Requires LLM: No
+- 工具名称：Python REPL
+- 工具描述：Python shell。用于执行Python命令。输入应为有效的Python命令。如果您期望输出，则应该将其打印出来。
+- 注意事项：维护状态。
+- 需要LLM：否
 
 **serpapi**
 
-- Tool Name: Search
-- Tool Description: A search engine. Useful for when you need to answer questions about current events. Input should be a search query.
-- Notes: Calls the Serp API and then parses results.
-- Requires LLM: No
+- 工具名称：搜索引擎
+- 工具描述：搜索引擎。在需要回答关于当前事件的问题时非常有用。输入应为搜索查询。
+- 注意事项：调用Serp API，然后解析结果。
+- 需要LLM：否
 
 **wolfram-alpha**
 
-- Tool Name: Wolfram Alpha
-- Tool Description: A wolfram alpha search engine. Useful for when you need to answer questions about Math, Science, Technology, Culture, Society and Everyday Life. Input should be a search query.
-- Notes: Calls the Wolfram Alpha API and then parses results.
-- Requires LLM: No
-- Extra Parameters: `wolfram_alpha_appid`: The Wolfram Alpha app id.
+- 工具名称：Wolfram Alpha
+- 工具描述：Wolfram Alpha搜索引擎。可用于回答有关数学、科学、技术、文化、社会和日常生活的问题。输入应该是一个搜索查询。
+- 注意事项：调用Wolfram Alpha API，然后解析结果。
+- 需要LLM：否
+- 额外参数： "wolfram_alpha_appid"：Wolfram Alpha应用程序ID。
 
 **requests**
 
-- Tool Name: Requests
-- Tool Description: A portal to the internet. Use this when you need to get specific content from a site. Input should be a specific url, and the output will be all the text on that page.
-- Notes: Uses the Python requests module.
-- Requires LLM: No
+- 工具名称：请求
+- 工具描述：访问互联网的门户。当您需要从网站获取特定内容时，请使用此选项。输入应该是一个特定的URL，输出将是该页面上的所有文本。
+- 注意事项：使用Python requests模块。
+- 需要LLM：否
 
-**terminal**
+**终端**
 
-- Tool Name: Terminal
-- Tool Description: Executes commands in a terminal. Input should be valid commands, and the output will be any output from running that command.
-- Notes: Executes commands with subprocess.
-- Requires LLM: No
+- 工具名称：终端
+- 工具描述：在终端中执行命令。输入应该是有效的命令，输出将是运行该命令时的任何输出。
+- 注意事项：使用子进程执行命令。
+- 需要LLM：否
 
-**pal-math**
+**PAL-MATH**
 
-- Tool Name: PAL-MATH
-- Tool Description: A language model that is excellent at solving complex word math problems. Input should be a fully worded hard word math problem.
-- Notes: Based on [this paper](https://arxiv.org/pdf/2211.10435.pdf).
-- Requires LLM: Yes
+- 工具名称：PAL-MATH
+- 工具介绍：一种优秀的语言模型，能够解决复杂的单词数学问题。输入应该是一个完整的单词化难度较大的数学问题。
+- 备注：基于 [这篇论文](https://arxiv.org/pdf/2211.10435.pdf)。
+- 需要LLM：是
 
 **pal-colored-objects**
 
-- Tool Name: PAL-COLOR-OBJ
-- Tool Description: A language model that is wonderful at reasoning about position and the color attributes of objects. Input should be a fully worded hard reasoning problem. Make sure to include all information about the objects AND the final question you want to answer.
-- Notes: Based on [this paper](https://arxiv.org/pdf/2211.10435.pdf).
-- Requires LLM: Yes
+- 工具名称：PAL-COLOR-OBJ
+- 工具介绍：一种奇妙的语言模型，能够理解对象的位置和颜色属性。 输入应该是一个完整的难度较大的推理问题。确保包含所有关于对象和您想回答的最终问题的信息。
+- 备注：基于[这篇论文](https://arxiv.org/pdf/2211.10435.pdf)。
+- 需要LLM：是
 
 **llm-math**
 
-- Tool Name: Calculator
-- Tool Description: Useful for when you need to answer questions about math.
-- Notes: An instance of the `LLMMath` chain.
-- Requires LLM: Yes
+- 工具名称：计算器
+- 工具介绍：用于回答数学问题。
+- 备注：`LLMMath`链的一个实例。
+- 需要LLM：是
 
 **open-meteo-api**
 
-- Tool Name: Open Meteo API
-- Tool Description: Useful for when you want to get weather information from the OpenMeteo API. The input should be a question in natural language that this API can answer.
-- Notes: A natural language connection to the Open Meteo API (`https://api.open-meteo.com/`), specifically the `/v1/forecast` endpoint.
-- Requires LLM: Yes
+- 工具名称：Open Meteo API
+- **open-meteo-api**
 
-**news-api**
+  - 工具描述：当您想从OpenMeteo API获取天气信息时非常有用。输入应为该API可以回答的自然语言问题。
+  - 注意事项：是与 Open Meteo API（`https://api.open-meteo.com/`）建立自然语言连接，具体地说是 `/v1/forecast` 终端点。
+  - 需要LLM：是
 
-- Tool Name: News API
-- Tool Description: Use this when you want to get information about the top headlines of current news stories. The input should be a question in natural language that this API can answer.
-- Notes: A natural language connection to the News API (`https://newsapi.org`), specifically the `/v2/top-headlines` endpoint.
-- Requires LLM: Yes
-- Extra Parameters: `news_api_key` (your API key to access this endpoint)
+- **news-api**
 
-**tmdb-api**
+  - 工具名称：新闻API
+  - 工具描述：当您想获取当前新闻故事的头条信息时，请使用此工具。输入应为该API可以回答的自然语言问题。
+  - 注意事项：是与 News API（`https://newsapi.org`）建立自然语言连接，具体地说是 `/v2/top-headlines` 终端点。
+  - 需要LLM：是
+  - 额外参数：`news_api_key`（您的API密钥以访问此终端点）
 
-- Tool Name: TMDB API
-- Tool Description: Useful for when you want to get information from The Movie Database. The input should be a question in natural language that this API can answer.
-- Notes: A natural language connection to the TMDB API (`https://api.themoviedb.org/3`), specifically the `/search/movie` endpoint.
-- Requires LLM: Yes
-- Extra Parameters: `tmdb_bearer_token` (your Bearer Token to access this endpoint - note that this is different from the API key)
+- **tmdb-api**
+
+  - 工具名称：TMDB API
+  - 工具描述：当您想从The Movie Database获取信息时非常有用。输入应为该API可以回答的自然语言问题。
+- 注意事项：连接到 TMDB API (`https://api.themoviedb.org/3`) 的自然语言接口，具体包括 `/search/movie` 终端节点。
+- 需要 LLM：是
+- 额外参数：`tmdb_bearer_token`（用于访问此终端节点的 Bearer Token，注意这与 API 密钥不同）
 
 **google-search**
 
-- Tool Name: Search
-- Tool Description: A wrapper around Google Search. Useful for when you need to answer questions about current events. Input should be a search query.
-- Notes: Uses the Google Custom Search API
-- Requires LLM: No
-- Extra Parameters: `google_api_key`, `google_cse_id`
-- For more information on this, see [this page](../../../ecosystem/google_search.md)
+- 工具名称：搜索
+- 工具描述：Google 搜索的封装器。当您需要回答有关当前事件的问题时非常有用。输入应该是一个搜索查询。
+- 注意事项：使用 Google 自定义搜索 API。
+- 需要 LLM：否
+- 额外参数：`google_api_key`，`google_cse_id`
+- 有关更多信息，请参见 [此页面](../../../ecosystem/google_search.md)。
 
 **searx-search**
 
-- Tool Name: Search
-- Tool Description: A wrapper around SearxNG meta search engine. Input should be a search query. 
-- Notes: SearxNG is easy to deploy self-hosted. It is a good privacy friendly alternative to Google Search. Uses the SearxNG API. 
-- Requires LLM: No
-- Extra Parameters: `searx_host`
+- 工具名称：搜索
+- 工具描述：SearxNG 元搜索引擎的封装器。输入应该是一个搜索查询。
+- 注意事项：SearxNG 很容易部署自托管。它是 Google 搜索的一个良好的隐私友好的替代品。使用 SearxNG API。
+- 需要 LLM：否
+- 额外参数：`searx_host`
 
 **google-serper**
+- 工具名称：搜索
+- 工具描述：一种低成本的Google搜索API。 当您需要回答关于时事的问题时非常有用。 输入应为搜索查询。
+- 注意：调用[serper.dev](https://serper.dev) Google搜索API，然后解析结果。
+- 需要LLM：否
+- 额外参数：`serper_api_key`
+- 有关更多信息，请参见[此页面](../../../ecosystem/google_serper.md)
 
-- Tool Name: Search
-- Tool Description: A low-cost Google Search API. Useful for when you need to answer questions about current events. Input should be a search query.
-- Notes: Calls the [serper.dev](https://serper.dev) Google Search API and then parses results.
-- Requires LLM: No
-- Extra Parameters: `serper_api_key`
-- For more information on this, see [this page](../../../ecosystem/google_serper.md)
+**维基百科**
 
-**wikipedia**
+- 工具名称：维基百科
+- 工具描述：维基百科的封装。 当您需要回答关于人物、地点、公司、历史事件或其他主题的一般问题时非常有用。 输入应为搜索查询。
+- 注意：使用[wikipedia](https://pypi.org/project/wikipedia/) Python包调用MediaWiki API，然后解析结果。
+- 需要LLM：否
+- 额外参数：`top_k_results`
 
-- Tool Name: Wikipedia
-- Tool Description: A wrapper around Wikipedia. Useful for when you need to answer general questions about people, places, companies, historical events, or other subjects. Input should be a search query.
-- Notes: Uses the [wikipedia](https://pypi.org/project/wikipedia/) Python package to call the MediaWiki API and then parses results.
-- Requires LLM: No
-- Extra Parameters: `top_k_results`
+**播客API**
 
-**podcast-api**
-
-- Tool Name: Podcast API
-- Tool Description: Use the Listen Notes Podcast API to search all podcasts or episodes. The input should be a question in natural language that this API can answer.
-- Notes: A natural language connection to the Listen Notes Podcast API (`https://www.PodcastAPI.com`), specifically the `/search/` endpoint.
-- Requires LLM: Yes
-- Extra Parameters: `listen_api_key` (your api key to access this endpoint)
+- 工具名称：播客API
+- 工具描述：使用Listen Notes Podcast API搜索所有播客或剧集。输入应该是一个自然语言问题，该API可以回答。
+- 备注：与Listen Notes Podcast API（`https://www.PodcastAPI.com`）的自然语言连接，特别是`/search/`终点。
+- 需要LLM：是
+- 额外参数：`listen_api_key`（访问此终点的API密钥）
 
 **openweathermap-api**
 
-- Tool Name: OpenWeatherMap
-- Tool Description: A wrapper around OpenWeatherMap API. Useful for fetching current weather information for a specified location. Input should be a location string (e.g. 'London,GB').
-- Notes: A connection to the OpenWeatherMap API (https://api.openweathermap.org), specifically the `/data/2.5/weather` endpoint.
-- Requires LLM: No
-- Extra Parameters: `openweathermap_api_key` (your API key to access this endpoint)
+- 工具名称：OpenWeatherMap
+- 工具描述：OpenWeatherMap API的包装器。用于获取指定位置的当前天气信息。输入应该是一个位置字符串（例如London,GB）。
+- 备注：连接到OpenWeatherMap API（https://api.openweathermap.org），特别是`/data/2.5/weather`终点。
+- 需要LLM：否
+- 额外参数：`openweathermap_api_key`（访问此终点的API密钥）

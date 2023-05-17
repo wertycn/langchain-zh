@@ -1,17 +1,17 @@
 # GPT4All
 
-This page covers how to use the `GPT4All` wrapper within LangChain. The tutorial is divided into two parts: installation and setup, followed by usage with an example.
+本页面介绍如何在LangChain中使用`GPT4All`包装器。本教程分为两部分：安装和设置以及使用示例。
 
-## Installation and Setup
-- Install the Python package with `pip install pyllamacpp`
-- Download a [GPT4All model](https://github.com/nomic-ai/pyllamacpp#supported-model) and place it in your desired directory
+## 安装和设置
 
-## Usage
+- 使用`pip install pyllamacpp`命令安装Python软件包
+- 下载[GPT4All模型](https://github.com/nomic-ai/pyllamacpp#supported-model)并将其放置在所需的目录中
+
+## 使用方法
 
 ### GPT4All
 
-To use the GPT4All wrapper, you need to provide the path to the pre-trained model file and the model's configuration.
-
+使用GPT4All包装器时，您需要提供预训练模型文件的路径和模型的配置。
 ```python
 from langchain.llms import GPT4All
 
@@ -21,27 +21,24 @@ model = GPT4All(model="./models/gpt4all-model.bin", n_ctx=512, n_threads=8)
 # Generate text
 response = model("Once upon a time, ")
 ```
+您可以自定义生成参数，例如n_predict，temp，top_p，top_k等。
 
-You can also customize the generation parameters, such as n_predict, temp, top_p, top_k, and others.
-
-To stream the model's predictions, add in a CallbackManager.
-
+要流式传输模型的预测结果，请添加CallbackManager。
 ```python
 from langchain.llms import GPT4All
-from langchain.callbacks.base import CallbackManager
 from langchain.callbacks.streaming_stdout import StreamingStdOutCallbackHandler
+
 # There are many CallbackHandlers supported, such as
 # from langchain.callbacks.streamlit import StreamlitCallbackHandler
 
-callback_manager = CallbackManager([StreamingStdOutCallbackHandler()])
-model = GPT4All(model="./models/gpt4all-model.bin", n_ctx=512, n_threads=8, callback_handler=callback_handler, verbose=True)
+callbacks = [StreamingStdOutCallbackHandler()]
+model = GPT4All(model="./models/gpt4all-model.bin", n_ctx=512, n_threads=8)
 
 # Generate text. Tokens are streamed through the callback manager.
-model("Once upon a time, ")
+model("Once upon a time, ", callbacks=callbacks)
 ```
+## 模型文件
 
-## Model File
+您可以在 [pyllamacpp](https://github.com/nomic-ai/pyllamacpp) 存储库中找到模型文件下载链接。
 
-You can find links to model file downloads in the [pyllamacpp](https://github.com/nomic-ai/pyllamacpp) repository.
-
-For a more detailed walkthrough of this, see [this notebook](../modules/models/llms/integrations/gpt4all.ipynb)
+如果您想要更详细的介绍，请参阅 [此笔记本](../modules/models/llms/integrations/gpt4all.ipynb)。

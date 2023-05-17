@@ -1,25 +1,21 @@
 # Cohere
 
-This page covers how to use the Cohere ecosystem within LangChain.
-It is broken into two parts: installation and setup, and then references to specific Cohere wrappers.
+本页面介绍如何在LangChain中使用Cohere生态系统，主要分为两个部分：安装和设置，以及特定Cohere封装的引用。
 
-## Installation and Setup
-- Install the Python SDK with `pip install cohere`
-- Get an Cohere api key and set it as an environment variable (`COHERE_API_KEY`)
+## 安装和设置
+- 使用 `pip install cohere` 安装Python SDK。
+- 获取Cohere API密钥，并将其设置为环境变量（`COHERE_API_KEY`）。
 
-## Wrappers
-
+## 封装
 ### LLM
-
-There exists an Cohere LLM wrapper, which you can access with 
+LangChain中存在Cohere LLM封装，可以通过以下方式访问：
 ```python
 from langchain.llms import Cohere
 ```
+### 嵌入
 
-### Embeddings
-
-There exists an Cohere Embeddings wrapper, which you can access with 
+LangChain已经提供了一个Cohere Embeddings的包装器，您可以使用以下方式访问：
 ```python
 from langchain.embeddings import CohereEmbeddings
 ```
-For a more detailed walkthrough of this, see [this notebook](../modules/models/text_embedding/examples/cohere.ipynb)
+如需更详细的步骤，请参见 [此notebook](../modules/models/text_embedding/examples/cohere.ipynb) 。

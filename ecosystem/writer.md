@@ -1,16 +1,17 @@
 # Writer
 
-This page covers how to use the Writer ecosystem within LangChain.
-It is broken into two parts: installation and setup, and then references to specific Writer wrappers.
+本页面介绍如何在LangChain中使用Writer生态系统。
 
-## Installation and Setup
-- Get an Writer api key and set it as an environment variable (`WRITER_API_KEY`)
+分为两部分：安装和设置，以及对特定Writer包装器的引用。
 
-## Wrappers
+## 安装和设置
+- 获取Writer api密钥，并将其设置为环境变量（`WRITER_API_KEY`）
+
+## 包装器
 
 ### LLM
 
-There exists an Writer LLM wrapper, which you can access with 
+有一个Writer LLM包装器，您可以使用它来访问。
 ```python
 from langchain.llms import Writer
 ```

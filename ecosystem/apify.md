@@ -1,46 +1,33 @@
 # Apify
 
-This page covers how to use [Apify](https://apify.com) within LangChain.
+本页面说明如何在LangChain中使用[Apify](https://apify.com)。
 
-## Overview
+## 概述
 
-Apify is a cloud platform for web scraping and data extraction,
-which provides an [ecosystem](https://apify.com/store) of more than a thousand
-ready-made apps called *Actors* for various scraping, crawling, and extraction use cases.
+Apify是一个云平台，可用于网络爬虫和数据提取，它提供了一个包含1000多个预制应用程序的“Actor”生态系统，可用于各种爬取、抓取和提取用例。
 
 [![Apify Actors](../_static/ApifyActors.png)](https://apify.com/store)
 
-This integration enables you run Actors on the Apify platform and load their results into LangChain to feed your vector
-indexes with documents and data from the web, e.g. to generate answers from websites with documentation,
-blogs, or knowledge bases.
+此集成使您能够在Apify平台上运行Actors，并将它们的结果加载到LangChain中，以便从网站、博客或知识库中获取文档和数据，例如生成文档、博客或知识库中的答案。
 
+## 安装和设置
 
-## Installation and Setup
+- 使用`pip install apify-client`命令安装Python的Apify API客户端。
+- 获取您的[Apify API令牌](https://console.apify.com/account/integrations)，然后将其设置为环境变量(`APIFY_API_TOKEN`)或在构造函数中作为`apify_api_token`参数传递给`ApifyWrapper`。
 
-- Install the Apify API client for Python with `pip install apify-client`
-- Get your [Apify API token](https://console.apify.com/account/integrations) and either set it as
-  an environment variable (`APIFY_API_TOKEN`) or pass it to the `ApifyWrapper` as `apify_api_token` in the constructor.
+## 包装器
 
-
-## Wrappers
-
-### Utility
-
-You can use the `ApifyWrapper` to run Actors on the Apify platform.
-
+### 实用工具
+您可以使用`ApifyWrapper`在Apify平台上运行Actor。
 ```python
 from langchain.utilities import ApifyWrapper
 ```
+要了解更详细的封装教程，请参见[此笔记本](../modules/agents/tools/examples/apify.ipynb)。
 
-For a more detailed walkthrough of this wrapper, see [this notebook](../modules/agents/tools/examples/apify.ipynb).
+### 载入器
 
-
-### Loader
-
-You can also use our `ApifyDatasetLoader` to get data from Apify dataset.
-
+您也可以使用我们的`ApifyDatasetLoader`从Apify数据集中获取数据。
 ```python
 from langchain.document_loaders import ApifyDatasetLoader
 ```
-
-For a more detailed walkthrough of this loader, see [this notebook](../modules/indexes/document_loaders/examples/apify_dataset.ipynb).
+要了解此加载器的更详细步骤，请参见[这个notebook](../modules/indexes/document_loaders/examples/apify_dataset.ipynb)。

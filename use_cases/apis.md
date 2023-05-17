@@ -1,23 +1,21 @@
-# Interacting with APIs
+# 与API交互
 
-> [Conceptual Guide](https://docs.langchain.com/docs/use-cases/apis)
+> [概念指南](https://docs.langchain.com/docs/use-cases/apis)
 
 
-Lots of data and information is stored behind APIs.
-This page covers all resources available in LangChain for working with APIs.
+许多数据和信息都储存在API后面。
+本页介绍了LangChain提供的所有与API交互的资源。
 
-## Chains
+## 链
 
-If you are just getting started, and you have relatively simple apis, you should get started with chains.
-Chains are a sequence of predetermined steps, so they are good to get started with as they give you more control and let you 
-understand what is happening better.
+如果您刚开始，而且拥有相对简单的API，则应该从链开始。
+链是一系列预定步骤，因此它们很适合初学者，因为可以让您更好地控制并更好地理解正在发生的事情。
 
-- [API Chain](../modules/chains/examples/api.ipynb)
+- [API链](../modules/chains/examples/api.ipynb)
 
-## Agents
+## 代理
 
-Agents are more complex, and involve multiple queries to the LLM to understand what to do.
-The downside of agents are that you have less control. The upside is that they are more powerful,
-which allows you to use them on larger and more complex schemas. 
+代理更为复杂，涉及多个查询LIM以理解该做什么。
+代理的缺点是您的控制权较少。优点是它们更强大，可以在更大更复杂的模式上使用。
 
-- [OpenAPI Agent](../modules/agents/toolkits/examples/openapi.ipynb)
+- [OpenAPI代理](../modules/agents/toolkits/examples/openapi.ipynb)

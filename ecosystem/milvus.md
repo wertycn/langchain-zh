@@ -1,20 +1,19 @@
 # Milvus
 
-This page covers how to use the Milvus ecosystem within LangChain.
-It is broken into two parts: installation and setup, and then references to specific Milvus wrappers.
 
-## Installation and Setup
-- Install the Python SDK with `pip install pymilvus`
-## Wrappers
+本页面介绍如何在LangChain中使用Milvus生态系统。它分为两个部分：安装设置和特定的Milvus包装器库引用。
+
+## 安装和设置
+- 使用`pip install pymilvus`安装Python SDK
+
+## 包装器库
 
 ### VectorStore
 
-There exists a wrapper around Milvus indexes, allowing you to use it as a vectorstore,
-whether for semantic search or example selection.
+存在一个围绕Milvus索引的包装器库，使您可以将它用作矢量存储，无论是用于语义搜索还是示例选择。
 
-To import this vectorstore:
+要导入此矢量存储：
 ```python
 from langchain.vectorstores import Milvus
 ```
-
-For a more detailed walkthrough of the Miluvs wrapper, see [this notebook](../modules/indexes/vectorstores/examples/milvus.ipynb)
+更详细教程，请参考 [此notebook](../modules/indexes/vectorstores/examples/milvus.ipynb) 关于 Miluvs 包装器的使用。

@@ -1,34 +1,28 @@
-# Wolfram Alpha Wrapper
+# Wolfram Alpha API包装器
 
-This page covers how to use the Wolfram Alpha API within LangChain.
-It is broken into two parts: installation and setup, and then references to specific Wolfram Alpha wrappers.
+本页面介绍如何在LangChain中使用Wolfram Alpha API。分为两个部分：安装和设置，以及引用特定的Wolfram Alpha包装器。
 
-## Installation and Setup
-- Install requirements with `pip install wolframalpha`
-- Go to wolfram alpha and sign up for a developer account [here](https://developer.wolframalpha.com/)
-- Create an app and get your APP ID
-- Set your APP ID as an environment variable `WOLFRAM_ALPHA_APPID`
+## 安装和设置
+- 使用`pip install wolframalpha`安装所需的库
+- 前往wolfram alpha网站，并注册开发者账户[点击这里](https://developer.wolframalpha.com/)
+- 创建一个应用程序，并获取您的APP ID
+- 将您的APP ID设置为环境变量`WOLFRAM_ALPHA_APPID`
 
+## 包装器
 
-## Wrappers
+### 实用工具
 
-### Utility
-
-There exists a WolframAlphaAPIWrapper utility which wraps this API. To import this utility:
-
+有一个WolframAlphaAPIWrapper实用程序可以包装这个API。要导入此实用程序：
 ```python
 from langchain.utilities.wolfram_alpha import WolframAlphaAPIWrapper
 ```
+如果您需要更详细的说明，请查看[此notebook](../modules/agents/tools/examples/wolfram_alpha.ipynb)。
 
-For a more detailed walkthrough of this wrapper, see [this notebook](../modules/agents/tools/examples/wolfram_alpha.ipynb).
+### 工具
 
-### Tool
-
-You can also easily load this wrapper as a Tool (to use with an Agent).
-You can do this with:
+您还可以将此封装器作为工具轻松加载（用于与代理程序一起使用）。通过以下方式即可实现：
 ```python
 from langchain.agents import load_tools
 tools = load_tools(["wolfram-alpha"])
 ```
-
-For more information on this, see [this page](../modules/agents/tools/getting_started.md)
+要了解更多信息，请访问[此页面](../modules/agents/tools/getting_started.md)。

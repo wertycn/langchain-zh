@@ -1,34 +1,29 @@
-# Replicate
-This page covers how to run models on Replicate within LangChain.
+# 复制
 
-## Installation and Setup
-- Create a [Replicate](https://replicate.com) account. Get your API key and set it as an environment variable (`REPLICATE_API_TOKEN`)
-- Install the [Replicate python client](https://github.com/replicate/replicate-python) with `pip install replicate`
+本页面介绍如何在LangChain内使用Replicate运行模型。
 
-## Calling a model
+## 安装和设置
+- 创建[Replicate](https://replicate.com)账户。获取您的API密钥并将其设置为环境变量(`REPLICATE_API_TOKEN`)
+- 使用`pip install replicate`命令安装[Replicate python客户端](https://github.com/replicate/replicate-python)。
 
-Find a model on the [Replicate explore page](https://replicate.com/explore), and then paste in the model name and version in this format: `owner-name/model-name:version`
+## 调用模型
 
-For example, for this [flan-t5 model](https://replicate.com/daanelson/flan-t5), click on the API tab. The model name/version would be: `daanelson/flan-t5:04e422a9b85baed86a4f24981d7f9953e20c5fd82f6103b74ebc431588e1cec8`
+在[Replicate explore页面](https://replicate.com/explore)中查找模型，然后将模型名称和版本粘贴在此格式中： `owner-name/model-name:version`
 
-Only the `model` param is required, but any other model parameters can also be passed in with the format `input={model_param: value, ...}`
+例如，对于[此dolly模型](https://replicate.com/replicate/dolly-v2-12b)，单击API选项卡。模型名称/版本将是：`"replicate/dolly-v2-12b:ef0e1aefc61f8e096ebe4db6b2bacc297daf2ef6899f0f7e001ec445893500e5"`。
 
+只需要 `model` 参数即可，但也可以使用格式`input={model_param:value,...}`传入任何其他模型参数。
 
-For example, if we were running stable diffusion and wanted to change the image dimensions:
-
+例如，如果我们正在运行稳定的扩散并且想要更改图像尺寸：
 ```
 Replicate(model="stability-ai/stable-diffusion:db21e45d3f7023abc2a46ee38a23973f6dce16bb082a930b0c49861f96d1e5bf", input={'image_dimensions': '512x512'})
 ```
-
-*Note that only the first output of a model will be returned.*
-From here, we can initialize our model:
-
+请注意：模型只会返回第一个输出。
+从这里，我们可以初始化我们的模型：
 ```python
-llm = Replicate(model="daanelson/flan-t5:04e422a9b85baed86a4f24981d7f9953e20c5fd82f6103b74ebc431588e1cec8")
+llm = Replicate(model="replicate/dolly-v2-12b:ef0e1aefc61f8e096ebe4db6b2bacc297daf2ef6899f0f7e001ec445893500e5")
 ```
-
-And run it:
-
+然后运行它：
 ```python
 prompt = """
 Answer the following yes/no question by reasoning step by step.
@@ -36,12 +31,9 @@ Can a dog drive a car?
 """
 llm(prompt)
 ```
-
-We can call any Replicate model (not just LLMs) using this syntax. For example, we can call [Stable Diffusion](https://replicate.com/stability-ai/stable-diffusion):
-
+我们可以使用以下语法调用任何Replicate模型（不仅限于LLMs）。例如，我们可以调用[稳定扩散](https://replicate.com/stability-ai/stable-diffusion):
 ```python
-text2image = Replicate(model="stability-ai/stable-diffusion:db21e45d3f7023abc2a46ee38a23973f6dce16bb082a930b0c49861f96d1e5bf",
-                       input={'image_dimensions'='512x512'}
+text2image = Replicate(model="stability-ai/stable-diffusion:db21e45d3f7023abc2a46ee38a23973f6dce16bb082a930b0c49861f96d1e5bf", input={'image_dimensions':'512x512'})
 
 image_output = text2image("A cat riding a motorcycle by Picasso")
 ```

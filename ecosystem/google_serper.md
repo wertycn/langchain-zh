@@ -1,24 +1,21 @@
-# Google Serper Wrapper
+# Google Serper 包装器
 
-This page covers how to use the [Serper](https://serper.dev) Google Search API within LangChain. Serper is a low-cost Google Search API that can be used to add answer box, knowledge graph, and organic results data from Google Search. 
-It is broken into two parts: setup, and then references to the specific Google Serper wrapper.
+本页面介绍如何在LangChain中使用[Serper](https://serper.dev) Google搜索API。 Serper是一个低成本的Google搜索API，可用于从Google搜索中添加答案框、知识图和有机搜索结果数据。本教程将分为两个部分：设置和特定Google Serper包装器的引用。
 
-## Setup
-- Go to [serper.dev](https://serper.dev) to sign up for a free account
-- Get the api key and set it as an environment variable (`SERPER_API_KEY`)
+## 设置
 
-## Wrappers
+- 打开[serper.dev](https://serper.dev) 并注册一个免费账号 
+- 获取API密钥并将其设置为环境变量 (`SERPER_API_KEY`)
 
-### Utility
+## 包装器
 
-There exists a GoogleSerperAPIWrapper utility which wraps this API. To import this utility:
+### 工具
 
+提供了一个GoogleSerperAPIWrapper工具来包装这个API。导入此工具的方法如下：
 ```python
 from langchain.utilities import GoogleSerperAPIWrapper
 ```
-
-You can use it as part of a Self Ask chain:
-
+您可以将它作为Self Ask链的一部分使用：
 ```python
 from langchain.utilities import GoogleSerperAPIWrapper
 from langchain.llms.openai import OpenAI
@@ -43,8 +40,7 @@ tools = [
 self_ask_with_search = initialize_agent(tools, llm, agent=AgentType.SELF_ASK_WITH_SEARCH, verbose=True)
 self_ask_with_search.run("What is the hometown of the reigning men's U.S. Open champion?")
 ```
-
-#### Output
+#### 输出
 ```
 Entering new AgentExecutor chain...
  Yes.
@@ -58,16 +54,14 @@ So the final answer is: El Palmar, Spain
 
 'El Palmar, Spain'
 ```
+如需更详细的封装指南，请参阅[此笔记本](../modules/agents/tools/examples/google_serper.ipynb)。
 
-For a more detailed walkthrough of this wrapper, see [this notebook](../modules/agents/tools/examples/google_serper.ipynb).
+### 工具
 
-### Tool
-
-You can also easily load this wrapper as a Tool (to use with an Agent).
-You can do this with:
+您还可以轻松地将此封装程序加载为工具（用于与代理一起使用）。
+您可以使用以下方法实现：
 ```python
 from langchain.agents import load_tools
 tools = load_tools(["google-serper"])
 ```
-
-For more information on this, see [this page](../modules/agents/tools/getting_started.md)
+更多信息，请参见[此页面](../modules/agents/tools/getting_started.md)。

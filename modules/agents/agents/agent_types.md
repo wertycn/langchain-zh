@@ -1,33 +1,18 @@
-# Agent Types
+# 代理类型
 
-Agents use an LLM to determine which actions to take and in what order.
-An action can either be using a tool and observing its output, or returning a response to the user.
-Here are the agents available in LangChain.
+代理使用语言模型来确定要采取的行动以及顺序。行动可以是使用工具和观察其输出，也可以是向用户返回响应。以下是LangChain提供的代理。
 
 ## `zero-shot-react-description`
 
-This agent uses the ReAct framework to determine which tool to use
-based solely on the tool's description. Any number of tools can be provided.
-This agent requires that a description is provided for each tool.
+这个代理使用ReAct框架仅基于工具的描述来确定应该使用哪个工具。可以提供任意数量的工具。此代理要求提供每个工具的描述。
 
 ## `react-docstore`
 
-This agent uses the ReAct framework to interact with a docstore. Two tools must
-be provided: a `Search` tool and a `Lookup` tool (they must be named exactly as so).
-The `Search` tool should search for a document, while the `Lookup` tool should lookup
-a term in the most recently found document.
-This agent is equivalent to the
-original [ReAct paper](https://arxiv.org/pdf/2210.03629.pdf), specifically the Wikipedia example.
+此代理使用`ReAct`框架与文档存储进行交互。 必须提供两个工具：一个`搜索`工具和一个 `查找` 工具（它们必须准确地命名为这样）。`搜索`工具应该搜索文档，而`查找`工具则应该在最近找到的文档中查找一个术语。 这个代理等同于原始的[ReAct论文]（https://arxiv.org/pdf/2210.03629.pdf），特别是维基百科的示例。
 
 ## `self-ask-with-search`
+此代理程序使用单一工具，应命名为“中间答案”。此工具应能够查找有关问题的事实答案。此代理程序相当于原始的“自问自答与搜索论文”（https://ofir.io/self-ask.pdf），其中提供了Google搜索API作为工具。
 
-This agent utilizes a single tool that should be named `Intermediate Answer`.
-This tool should be able to lookup factual answers to questions. This agent
-is equivalent to the original [self ask with search paper](https://ofir.io/self-ask.pdf),
-where a Google search API was provided as the tool.
+### “交互式React说明”
 
-### `conversational-react-description`
-
-This agent is designed to be used in conversational settings.
-The prompt is designed to make the agent helpful and conversational.
-It uses the ReAct framework to decide which tool to use, and uses memory to remember the previous conversation interactions.
+此代理程序旨在用于会话设置。提示设计使代理人有帮助和对话。它使用ReAct框架来决定使用哪个工具，并使用记忆来记住先前的对话交互。

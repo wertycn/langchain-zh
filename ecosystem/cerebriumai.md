@@ -1,17 +1,16 @@
 # CerebriumAI
 
-This page covers how to use the CerebriumAI ecosystem within LangChain.
-It is broken into two parts: installation and setup, and then references to specific CerebriumAI wrappers.
+本页面介绍如何在LangChain中使用CerebriumAI生态系统。它分为两个部分：安装和设置，以及特定CerebriumAI包装器的引用。
 
-## Installation and Setup
-- Install with `pip install cerebrium`
-- Get an CerebriumAI api key and set it as an environment variable (`CEREBRIUMAI_API_KEY`)
+## 安装和设置
+- 通过`pip install cerebrium`命令进行安装。
+- 获取一个CerebriumAI api密钥，并将其设置为环境变量（`CEREBRIUMAI_API_KEY`）
 
-## Wrappers
+## 包装器
 
 ### LLM
 
-There exists an CerebriumAI LLM wrapper, which you can access with 
+CerebriumAI提供了一个LLM包装器，您可以使用以下命令访问：
 ```python
 from langchain.llms import CerebriumAI
 ```

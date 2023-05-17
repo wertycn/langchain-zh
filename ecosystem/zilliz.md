@@ -1,21 +1,16 @@
 # Zilliz
 
-This page covers how to use the Zilliz Cloud ecosystem within LangChain.
-Zilliz uses the Milvus integration. 
-It is broken into two parts: installation and setup, and then references to specific Milvus wrappers.
+本页面介绍如何在LangChain中使用Zilliz Cloud生态系统。Zilliz使用Milvus集成。它分为两个部分：安装和设置，以及特定Milvus包装器的引用。
 
-## Installation and Setup
-- Install the Python SDK with `pip install pymilvus`
-## Wrappers
+## 安装和设置
+- 使用 `pip install pymilvus` 安装Python SDK
 
+## 包装器
 ### VectorStore
+存在一个Zilliz索引的包装器，允许您将其用作矢量库，无论是用于语义搜索还是示例选择。
 
-There exists a wrapper around Zilliz indexes, allowing you to use it as a vectorstore,
-whether for semantic search or example selection.
-
-To import this vectorstore:
+要导入此矢量库，请使用以下代码：
 ```python
 from langchain.vectorstores import Milvus
 ```
-
-For a more detailed walkthrough of the Miluvs wrapper, see [this notebook](../modules/indexes/vectorstores/examples/zilliz.ipynb)
+如果您需要更详细的Miluvs包使用说明，请查看[此笔记本](../modules/indexes/vectorstores/examples/zilliz.ipynb)。

@@ -1,45 +1,42 @@
-# Prediction Guard
+# 预测保护
 
-This page covers how to use the Prediction Guard ecosystem within LangChain.
-It is broken into two parts: installation and setup, and then references to specific Prediction Guard wrappers.
+本页面介绍如何在LangChain中使用预测保护生态系统。
+它分为两个部分:安装和设置,以及特定预测保护封装的参考。
 
-## Installation and Setup
-- Install the Python SDK with `pip install predictionguard`
-- Get an Prediction Guard access token (as described [here](https://docs.predictionguard.com/)) and set it as an environment variable (`PREDICTIONGUARD_TOKEN`)
+## 安装和设置
+- 使用 `pip install predictionguard` 安装Python SDK
+- 获取一个Prediction Guard访问令牌(如上述[文档](https://docs.predictionguard.com/)所述)，并将其设置为环境变量(`PREDICTIONGUARD_TOKEN`)
 
-## LLM Wrapper
+## LLM封装器
 
-There exists a Prediction Guard LLM wrapper, which you can access with 
+存在一个Prediction Guard LLM封装器，您可以使用以下方式进行访问
 ```python
 from langchain.llms import PredictionGuard
 ```
-
-You can provide the name of your Prediction Guard "proxy" as an argument when initializing the LLM:
+当初始化LLM时，您可以通过提供Prediction Guard“代理”的名称作为参数来实现：
 ```python
 pgllm = PredictionGuard(name="your-text-gen-proxy")
 ```
-
-Alternatively, you can use Prediction Guard's default proxy for SOTA LLMs:
+或者，您可以使用Prediction Guard的默认代理访问最先进的语言模型（SOTA LLMs）:
 ```python
 pgllm = PredictionGuard(name="default-text-gen")
 ```
-
-You can also provide your access token directly as an argument:
+您也可以直接将您的访问令牌作为一个参数提供：
 ```python
 pgllm = PredictionGuard(name="default-text-gen", token="<your access token>")
 ```
+## 示例用法
 
-## Example usage
-
-Basic usage of the LLM wrapper:
+LLM（LangChain Language Model）包装器的基本用法：
 ```python
 from langchain.llms import PredictionGuard
 
 pgllm = PredictionGuard(name="default-text-gen")
 pgllm("Tell me a joke")
 ```
+使用Prediction Guard包装器实现基本LLM（Language Model）串联：
 
-Basic LLM Chaining with the Prediction Guard wrapper:
+
 ```python
 from langchain import PromptTemplate, LLMChain
 from langchain.llms import PredictionGuard

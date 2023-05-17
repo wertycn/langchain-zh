@@ -1,27 +1,24 @@
 # Helicone
 
-This page covers how to use the [Helicone](https://helicone.ai) ecosystem within LangChain.
+本页面介绍如何在LangChain中使用[Helicone](https://helicone.ai)生态系统。
 
-## What is Helicone?
+## Helicone是什么？
 
-Helicone is an [open source](https://github.com/Helicone/helicone) observability platform that proxies your OpenAI traffic and provides you key insights into your spend, latency and usage.
+Helicone是一个[开源的](https://github.com/Helicone/helicone)可观测性平台，代理您的OpenAI流量并为您提供有关开支、延迟和使用情况的关键见解。
 
 ![Helicone](../_static/HeliconeDashboard.png)
 
-## Quick start
+## 快速入门
 
-With your LangChain environment you can just add the following parameter.
-
+在LangChain环境下，您只需添加以下参数即可。
 ```bash
 export OPENAI_API_BASE="https://oai.hconeai.com/v1"
 ```
-
-Now head over to [helicone.ai](https://helicone.ai/onboarding?step=2) to create your account, and add your OpenAI API key within our dashboard to view your logs.
+现在，请前往[Helicone.ai](https://helicone.ai/onboarding?step=2)创建您的账户，并在我们的仪表板中添加您的OpenAI API密钥以查看日志。
 
 ![Helicone](../_static/HeliconeKeys.png)
 
-## How to enable Helicone caching
-
+## 如何启用Helicone缓存
 ```python
 from langchain.llms import OpenAI
 import openai
@@ -31,11 +28,9 @@ llm = OpenAI(temperature=0.9, headers={"Helicone-Cache-Enabled": "true"})
 text = "What is a helicone?"
 print(llm(text))
 ```
+[Helicone缓存文档](https://docs.helicone.ai/advanced-usage/caching)
 
-[Helicone caching docs](https://docs.helicone.ai/advanced-usage/caching)
-
-## How to use Helicone custom properties
-
+## 如何使用Helicone自定义属性
 ```python
 from langchain.llms import OpenAI
 import openai
@@ -49,5 +44,4 @@ llm = OpenAI(temperature=0.9, headers={
 text = "What is a helicone?"
 print(llm(text))
 ```
-
-[Helicone property docs](https://docs.helicone.ai/advanced-usage/custom-properties)
+[Helicone资产文档](https://docs.helicone.ai/advanced-usage/custom-properties)

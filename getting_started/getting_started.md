@@ -1,72 +1,53 @@
-# Quickstart Guide
+# 快速上手指南
 
 
-This tutorial gives you a quick walkthrough about building an end-to-end language model application with LangChain.
+本教程将为您快速介绍如何使用LangChain构建一个端到端的语言模型应用程序。
 
-## Installation
+## 安装
 
-To get started, install LangChain with the following command:
-
+要开始使用LangChain，请使用以下命令安装LangChain：
 ```bash
 pip install langchain
 # or
 conda install langchain -c conda-forge
 ```
+## 环境设置
 
+通常使用LangChain将需要与一个或多个模型提供者、数据存储、API等进行集成。
 
-## Environment Setup
-
-Using LangChain will usually require integrations with one or more model providers, data stores, apis, etc.
-
-For this example, we will be using OpenAI's APIs, so we will first need to install their SDK:
-
+在本例中，我们将使用OpenAI的API，因此我们首先需要安装他们的SDK：
 ```bash
 pip install openai
 ```
-
-We will then need to set the environment variable in the terminal.
-
+接下来，我们需要在终端中设置环境变量。
 ```bash
 export OPENAI_API_KEY="..."
 ```
-
-Alternatively, you could do this from inside the Jupyter notebook (or Python script):
-
+或者，您可以在Jupyter笔记本或Python脚本中执行以下操作：
 ```python
 import os
 os.environ["OPENAI_API_KEY"] = "..."
 ```
+## 构建语言模型应用程序：LLMs
 
+既然我们已经安装了LangChain并设置好了环境，我们便可以开始构建语言模型应用程序。
 
-## Building a Language Model Application: LLMs
+LangChain提供许多模块可用于构建语言模型应用程序。这些模块可以组合在一起以创建更复杂的应用程序，也可以单独用于简单的应用程序。
 
-Now that we have installed LangChain and set up our environment, we can start building our language model application.
+## LLMs：从语言模型中获取预测结果
 
-LangChain provides many modules that can be used to build language model applications. Modules can be combined to create more complex applications, or be used individually for simple applications.
+LangChain的最基本的构建块是在一些输入上调用一个LLM。让我们通过一个简单的例子来演示如何做到这一点。请假设我们正在构建一个基于公司产品的名称来生成公司名称的服务。
 
-
-
-## LLMs: Get predictions from a language model
-
-The most basic building block of LangChain is calling an LLM on some input.
-Let's walk through a simple example of how to do this. 
-For this purpose, let's pretend we are building a service that generates a company name based on what the company makes.
-
-In order to do this, we first need to import the LLM wrapper.
-
+为了做到这一点，我们首先需要导入LLM wrapper。
 ```python
 from langchain.llms import OpenAI
 ```
-
-We can then initialize the wrapper with any arguments.
-In this example, we probably want the outputs to be MORE random, so we'll initialize it with a HIGH temperature.
-
+我们可以使用任何参数来初始化包装器。
+在这个例子中，我们可能希望输出结果更加随机，所以我们将使用高温度来初始化它。
 ```python
 llm = OpenAI(temperature=0.9)
 ```
-
-We can now call it on some input!
-
+现在我们可以对某些输入进行调用!
 ```python
 text = "What would be a good company name for a company that makes colorful socks?"
 print(llm(text))
@@ -75,23 +56,21 @@ print(llm(text))
 ```pycon
 Feetful of Fun
 ```
+有关如何在LangChain中使用LLMs的详细信息，请参阅[LLM入门指南](../modules/models/llms/getting_started.ipynb)。
 
-For more details on how to use LLMs within LangChain, see the [LLM getting started guide](../modules/models/llms/getting_started.ipynb).
 
+## 提示模板：管理LLMs的提示
 
-## Prompt Templates: Manage prompts for LLMs
+调用LLM是很好的第一步，但这只是一个开始。
+通常，当您在应用程序中使用LLM时，您并不会直接将用户输入发送到LLM。
+相反，您可能会获取用户输入并构建一个提示，然后将其发送到LLM。
 
-Calling an LLM is a great first step, but it's just the beginning.
-Normally when you use an LLM in an application, you are not sending user input directly to the LLM.
-Instead, you are probably taking user input and constructing a prompt, and then sending that to the LLM.
+例如，在之前的示例中，我们传递的文本是硬代码的，要求为一家生产彩色袜子的公司提供名称。
+在这个虚构的服务中，我们只想使用描述公司业务的用户输入，并使用这些信息格式化提示。
 
-For example, in the previous example, the text we passed in was hardcoded to ask for a name for a company that made colorful socks.
-In this imaginary service, what we would want to do is take only the user input describing what the company does, and then format the prompt with that information.
+这很容易在LangChain中实现！
 
-This is easy to do with LangChain!
-
-First lets define the prompt template:
-
+首先，让我们定义提示模板：
 ```python
 from langchain.prompts import PromptTemplate
 
@@ -100,9 +79,7 @@ prompt = PromptTemplate(
     template="What is a good name for a company that makes {product}?",
 )
 ```
-
-Let's now see how this works! We can call the `.format` method to format it.
-
+现在让我们看看它是如何工作的！我们可以调用`.format`方法进行格式化。
 ```python
 print(prompt.format(product="colorful socks"))
 ```
@@ -110,23 +87,18 @@ print(prompt.format(product="colorful socks"))
 ```pycon
 What is a good name for a company that makes colorful socks?
 ```
+[更多细节请查看提示的入门指南。](../modules/prompts/chat_prompt_template.ipynb)
 
 
-[For more details, check out the getting started guide for prompts.](../modules/prompts/chat_prompt_template.ipynb)
+## 链：将LLM和提示模块组合在多步骤工作流中
 
+迄今为止，我们已经单独使用PromptTemplate和LLM原语。但是，真正的应用程序不只是一个原语，而是它们的组合。
 
+在LangChain中，链由链接组成，可以是像LLM这样的原语，也可以是其他链。
 
+最基本的链类型是LLMChain，它由PromptTemplate和LLM组成。
 
-## Chains: Combine LLMs and prompts in multi-step workflows
-
-Up until now, we've worked with the PromptTemplate and LLM primitives by themselves. But of course, a real application is not just one primitive, but rather a combination of them.
-
-A chain in LangChain is made up of links, which can be either primitives like LLMs or other chains.
-
-The most core type of chain is an LLMChain, which consists of a PromptTemplate and an LLM.
-
-Extending the previous example, we can construct an LLMChain which takes user input, formats it with a PromptTemplate, and then passes the formatted response to an LLM.
-
+扩展之前的示例，我们可以构造一个LLMChain，它接收用户输入，使用PromptTemplate格式化输入，然后将格式化后的响应传递给LLM。
 ```python
 from langchain.prompts import PromptTemplate
 from langchain.llms import OpenAI
@@ -137,60 +109,49 @@ prompt = PromptTemplate(
     template="What is a good name for a company that makes {product}?",
 )
 ```
-
-We can now create a very simple chain that will take user input, format the prompt with it, and then send it to the LLM:
-
+我们现在可以创建一个非常简单的链，它将采用用户输入，使用它来格式化提示，然后将其发送到LLM：
 ```python
 from langchain.chains import LLMChain
 chain = LLMChain(llm=llm, prompt=prompt)
 ```
-
-Now we can run that chain only specifying the product!
-
+我们现在可以只指定产品来运行该链！
 ```python
 chain.run("colorful socks")
 # -> '\n\nSocktastic!'
 ```
+来了！第一个Chain - 一个LLM Chain。
 
-There we go! There's the first chain - an LLM Chain.
-This is one of the simpler types of chains, but understanding how it works will set you up well for working with more complex chains.
+这是比较简单的链的类型之一，但是理解其工作原理可为您处理更复杂的链奠定基础。
 
-[For more details, check out the getting started guide for chains.](../modules/chains/getting_started.ipynb)
+[欲了解更多详情，请查看链的入门指南。](../modules/chains/getting_started.ipynb)
 
-## Agents: Dynamically Call Chains Based on User Input
+## Agents: 根据用户输入动态调用链
 
-So far the chains we've looked at run in a predetermined order.
+到目前为止，我们看到的链是按预定顺序运行的。
 
-Agents no longer do: they use an LLM to determine which actions to take and in what order. An action can either be using a tool and observing its output, or returning to the user.
+Agents则不再如此：它们使用LLM来确定需要执行的操作以及执行顺序。一个操作可以是使用工具并观察其输出，或将输出返回给用户。
 
-When used correctly agents can be extremely powerful. In this tutorial, we show you how to easily use agents through the simplest, highest level API.
+如果正确使用，Agents可以非常强大。在本教程中，我们通过最简单、最高水平的API向您展示如何轻松使用Agents。
 
+为了加载Agents，您需要理解以下概念：
+- 工具（Tool）：执行特定任务的函数。例如：Google搜索、数据库查找、Python REPL或者其它链。目前，工具的接口是一个期望输入一个字符串并返回一个字符串的函数。
+- LLM：驱动代理的语言模型。
+- 代理（Agent）：要使用的代理。这应该是一个字符串，引用了一个支持的代理类。因为这个notebook只涵盖最简单、最高级别的API，所以仅包括使用标准支持的代理。如果您想实现自定义代理，请参阅自定义代理的文档（即将推出）。
 
-In order to load agents, you should understand the following concepts:
+**代理**：支持代理及其规格的列表，请参见[此处](../modules/agents/getting_started.ipynb)。
 
-- Tool: A function that performs a specific duty. This can be things like: Google Search, Database lookup, Python REPL, other chains. The interface for a tool is currently a function that is expected to have a string as an input, with a string as an output.
-- LLM: The language model powering the agent.
-- Agent: The agent to use. This should be a string that references a support agent class. Because this notebook focuses on the simplest, highest level API, this only covers using the standard supported agents. If you want to implement a custom agent, see the documentation for custom agents (coming soon).
+**工具**：预定义的工具及其规格的列表，请参见[此处](../modules/agents/tools/getting_started.md)。
 
-**Agents**: For a list of supported agents and their specifications, see [here](../modules/agents/agents.md).
-
-**Tools**: For a list of predefined tools and their specifications, see [here](../modules/agents/tools.md).
-
-For this example, you will also need to install the SerpAPI Python package.
-
+为了本示例，您还需要安装SerpAPI Python包。
 ```bash
 pip install google-search-results
 ```
-
-And set the appropriate environment variables.
-
+并设置相应的环境变量。
 ```python
 import os
 os.environ["SERPAPI_API_KEY"] = "..."
 ```
-
-Now we can get started!
-
+现在我们可以开始了！
 ```python
 from langchain.agents import load_tools
 from langchain.agents import initialize_agent
@@ -227,17 +188,12 @@ Final Answer: The high temperature in SF yesterday in Fahrenheit raised to the .
 
 > Finished chain.
 ```
+## 内存：为链和代理添加状态
 
+到目前为止，我们研究过的所有链和代理都是无状态的。但是往往，您可能希望链或代理具有一些"内存"的概念，以便它可以记住有关其先前交互的信息。最清晰和简单的例子是设计聊天机器人 - 您希望它记住以前的消息，以便它可以使用上下文进行更好的交谈。这将是一种"短期记忆"的类型。在更复杂的一面，您可以想象一个链/代理随着时间的推移记住关键的信息 - 这将是一种"长期记忆"的形式。有关后者的更具体的想法，请参阅这个[awesome paper](https://memprompt.com/)。
 
-
-## Memory: Add State to Chains and Agents
-
-So far, all the chains and agents we've gone through have been stateless. But often, you may want a chain or agent to have some concept of "memory" so that it may remember information about its previous interactions. The clearest and simple example of this is when designing a chatbot - you want it to remember previous messages so it can use context from that to have a better conversation. This would be a type of "short-term memory". On the more complex side, you could imagine a chain/agent remembering key pieces of information over time - this would be a form of "long-term memory". For more concrete ideas on the latter, see this [awesome paper](https://memprompt.com/).
-
-LangChain provides several specially created chains just for this purpose. This notebook walks through using one of those chains (the `ConversationChain`) with two different types of memory.
-
-By default, the `ConversationChain` has a simple type of memory that remembers all previous inputs/outputs and adds them to the context that is passed. Let's take a look at using this chain (setting `verbose=True` so we can see the prompt).
-
+LangChain提供了几个特别为此目的创建的链。本笔记本介绍了如何使用其中一个链（`ConversationChain`）和两种不同类型的内存。
+默认情况下，`ConversationChain` 提供了一种简单的记忆类型，可以记住之前的所有输入/输出，并将它们添加到传递的上下文中。让我们看看如何使用这个链条（设置 `verbose=True`，这样我们可以看到提示信息）。
 ```python
 from langchain import OpenAI, ConversationChain
 
@@ -282,17 +238,15 @@ AI:
 > Finished chain.
 " That's great! What would you like to talk about?"
 ```
+## 构建语言模型应用程序：聊天模型
 
-## Building a Language Model Application: Chat Models
+类似地，您可以使用聊天模型而不是LLMs。聊天模型是语言模型的一种变体。虽然聊天模型在底层使用语言模型，但它们提供的接口与“输入文本，输出文本”的API有所不同：它们提供的接口是输入和输出为“聊天消息”的API。
 
-Similarly, you can use chat models instead of LLMs. Chat models are a variation on language models. While chat models use language models under the hood, the interface they expose is a bit different: rather than expose a "text in, text out" API, they expose an interface where "chat messages" are the inputs and outputs.
+聊天模型API还比较新，因此我们还在研究正确的抽象层。
 
-Chat model APIs are fairly new, so we are still figuring out the correct abstractions.
+## 从聊天模型获取消息完成状态
 
-## Get Message Completions from a Chat Model
-
-You can get chat completions by passing one or more messages to the chat model. The response will be a message. The types of messages currently supported in LangChain are `AIMessage`, `HumanMessage`, `SystemMessage`, and `ChatMessage` -- `ChatMessage` takes in an arbitrary role parameter. Most of the time, you'll just be dealing with `HumanMessage`, `AIMessage`, and `SystemMessage`.
-
+您可以通过向聊天模型传递一个或多个消息来获取聊天完成状态。响应将是一条消息。LangChain当前支持的消息类型包括`AIMessage`、`HumanMessage`、`SystemMessage`和`ChatMessage`——`ChatMessage`带有一个任意的角色参数。大多数时候，您只需要处理`HumanMessage`、`AIMessage`和`SystemMessage`。
 ```python
 from langchain.chat_models import ChatOpenAI
 from langchain.schema import (
@@ -303,54 +257,46 @@ from langchain.schema import (
 
 chat = ChatOpenAI(temperature=0)
 ```
-
-You can get completions by passing in a single message.
-
+您可以通过传入一条消息来获得自动完成提示。
 ```python
 chat([HumanMessage(content="Translate this sentence from English to French. I love programming.")])
 # -> AIMessage(content="J'aime programmer.", additional_kwargs={})
 ```
-
-You can also pass in multiple messages for OpenAI's gpt-3.5-turbo and gpt-4 models.
-
+您还可以将多个消息传递给OpenAI的gpt-3.5-turbo和gpt-4模型。
 ```python
 messages = [
     SystemMessage(content="You are a helpful assistant that translates English to French."),
-    HumanMessage(content="Translate this sentence from English to French. I love programming.")
+    HumanMessage(content="I love programming.")
 ]
 chat(messages)
 # -> AIMessage(content="J'aime programmer.", additional_kwargs={})
 ```
-
-You can go one step further and generate completions for multiple sets of messages using `generate`. This returns an `LLMResult` with an additional `message` parameter:
+您可以进一步使用“generate”为多组消息生成已完成的建议。该函数将返回一个带有额外“message”参数的“LLMResult”:
 ```python
 batch_messages = [
     [
         SystemMessage(content="You are a helpful assistant that translates English to French."),
-        HumanMessage(content="Translate this sentence from English to French. I love programming.")
+        HumanMessage(content="I love programming.")
     ],
     [
         SystemMessage(content="You are a helpful assistant that translates English to French."),
-        HumanMessage(content="Translate this sentence from English to French. I love artificial intelligence.")
+        HumanMessage(content="I love artificial intelligence.")
     ],
 ]
 result = chat.generate(batch_messages)
 result
-# -> LLMResult(generations=[[ChatGeneration(text="J'aime programmer.", generation_info=None, message=AIMessage(content="J'aime programmer.", additional_kwargs={}))], [ChatGeneration(text="J'aime l'intelligence artificielle.", generation_info=None, message=AIMessage(content="J'aime l'intelligence artificielle.", additional_kwargs={}))]], llm_output={'token_usage': {'prompt_tokens': 71, 'completion_tokens': 18, 'total_tokens': 89}})
+# -> LLMResult(generations=[[ChatGeneration(text="J'aime programmer.", generation_info=None, message=AIMessage(content="J'aime programmer.", additional_kwargs={}))], [ChatGeneration(text="J'aime l'intelligence artificielle.", generation_info=None, message=AIMessage(content="J'aime l'intelligence artificielle.", additional_kwargs={}))]], llm_output={'token_usage': {'prompt_tokens': 57, 'completion_tokens': 20, 'total_tokens': 77}})
 ```
-
-You can recover things like token usage from this LLMResult:
+您可以从 LLMResult 中恢复诸如 token 使用等信息。
 ```
 result.llm_output['token_usage']
-# -> {'prompt_tokens': 71, 'completion_tokens': 18, 'total_tokens': 89}
+# -> {'prompt_tokens': 57, 'completion_tokens': 20, 'total_tokens': 77}
 ```
+## 聊天提示模板
 
+类似于 LLM，您可以通过使用 `MessagePromptTemplate` 来利用模板。您可以从一个或多个 `MessagePromptTemplate` 构建一个 `ChatPromptTemplate`。您可以使用 `ChatPromptTemplate` 的 `format_prompt` -- 这返回一个 `PromptValue`，您可以将其转换为字符串或 `Message` 对象，具体取决于您是否想将格式化后的值用作llm或聊天模型的输入。
 
-## Chat Prompt Templates
-Similar to LLMs, you can make use of templating by using a `MessagePromptTemplate`. You can build a `ChatPromptTemplate` from one or more `MessagePromptTemplate`s. You can use `ChatPromptTemplate`'s `format_prompt` -- this returns a `PromptValue`, which you can convert to a string or `Message` object, depending on whether you want to use the formatted value as input to an llm or chat model.
-
-For convience, there is a `from_template` method exposed on the template. If you were to use this template, this is what it would look like:
-
+为方便起见，模板上公开了一个 `from_template` 方法。如果您要使用此模板，它将如下所示：
 ```python
 from langchain.chat_models import ChatOpenAI
 from langchain.prompts.chat import (
@@ -361,9 +307,9 @@ from langchain.prompts.chat import (
 
 chat = ChatOpenAI(temperature=0)
 
-template="You are a helpful assistant that translates {input_language} to {output_language}."
+template = "You are a helpful assistant that translates {input_language} to {output_language}."
 system_message_prompt = SystemMessagePromptTemplate.from_template(template)
-human_template="{text}"
+human_template = "{text}"
 human_message_prompt = HumanMessagePromptTemplate.from_template(human_template)
 
 chat_prompt = ChatPromptTemplate.from_messages([system_message_prompt, human_message_prompt])
@@ -372,10 +318,9 @@ chat_prompt = ChatPromptTemplate.from_messages([system_message_prompt, human_mes
 chat(chat_prompt.format_prompt(input_language="English", output_language="French", text="I love programming.").to_messages())
 # -> AIMessage(content="J'aime programmer.", additional_kwargs={})
 ```
+## 基于聊天模型的链式结构
 
-## Chains with Chat Models
-The `LLMChain` discussed in the above section can be used with chat models as well:
-
+如上一节所述，`LLMChain` 也可以与聊天模型一起使用：
 ```python
 from langchain.chat_models import ChatOpenAI
 from langchain import LLMChain
@@ -387,9 +332,9 @@ from langchain.prompts.chat import (
 
 chat = ChatOpenAI(temperature=0)
 
-template="You are a helpful assistant that translates {input_language} to {output_language}."
+template = "You are a helpful assistant that translates {input_language} to {output_language}."
 system_message_prompt = SystemMessagePromptTemplate.from_template(template)
-human_template="{text}"
+human_template = "{text}"
 human_message_prompt = HumanMessagePromptTemplate.from_template(human_template)
 chat_prompt = ChatPromptTemplate.from_messages([system_message_prompt, human_message_prompt])
 
@@ -397,10 +342,9 @@ chain = LLMChain(llm=chat, prompt=chat_prompt)
 chain.run(input_language="English", output_language="French", text="I love programming.")
 # -> "J'aime programmer."
 ```
+## 带有聊天模型的代理
 
-## Agents with Chat Models
-Agents can also be used with chat models, you can initialize one using `AgentType.CHAT_ZERO_SHOT_REACT_DESCRIPTION` as the agent type.
-
+代理还可以与聊天模型一起使用，您可以使用 `AgentType.CHAT_ZERO_SHOT_REACT_DESCRIPTION` 作为代理类型来初始化一个聊天代理。
 ```python
 from langchain.agents import load_tools
 from langchain.agents import initialize_agent
@@ -457,9 +401,9 @@ Final Answer: 2.169459462491557
 > Finished chain.
 '2.169459462491557'
 ```
-## Memory: Add State to Chains and Agents
-You can use Memory with chains and agents initialized with chat models. The main difference between this and Memory for LLMs is that rather than trying to condense all previous messages into a string, we can keep them as their own unique memory object.
+## 记忆：将状态添加到链和代理中
 
+您可以将内存与使用聊天模型初始化的链和代理一起使用。与用于LLM的内存的主要区别在于，我们可以将它们保留为其自己的独特内存对象，而不是尝试将所有先前的消息压缩成字符串。
 ```python
 from langchain.prompts import (
     ChatPromptTemplate, 

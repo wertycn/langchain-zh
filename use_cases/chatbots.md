@@ -1,21 +1,18 @@
-# Chatbots
+# 聊天机器人
 
-> [Conceptual Guide](https://docs.langchain.com/docs/use-cases/chatbots)
+> [概念性指南](https://docs.langchain.com/docs/use-cases/chatbots)
 
+由于语言模型擅长生成文本，因此它们非常适合用于创建聊天机器人。除了基础提示/LLM之外，了解聊天机器人的一个重要概念是“记忆”（memory）。大多数基于聊天的应用程序依赖于记住以前交互中发生的事情，而“记忆”旨在帮助实现这一目的。
 
-Since language models are good at producing text, that makes them ideal for creating chatbots.
-Aside from the base prompts/LLMs, an important concept to know for Chatbots is `memory`.
-Most chat based applications rely on remembering what happened in previous interactions, which `memory` is designed to help with.
+以下资源可供参考：
 
-The following resources exist:
-- [ChatGPT Clone](../modules/agents/agent_executors/examples/chatgpt_clone.ipynb): A notebook walking through how to recreate a ChatGPT-like experience with LangChain.
-- [Conversation Memory](../modules/memory/getting_started.ipynb): A notebook walking through how to use different types of conversational memory.
-- [Conversation Agent](../modules/agents/agents/examples/conversational_agent.ipynb): A notebook walking through how to create an agent optimized for conversation.
+- [ChatGPT Clone](../modules/agents/agent_executors/examples/chatgpt_clone.ipynb): 一个说明如何使用LangChain重新创建类ChatGPT体验的notebook。
+- [Conversation Memory](../modules/memory/getting_started.ipynb): 一个说明如何使用不同类型的对话记忆的notebook。
+- [Conversation Agent](../modules/agents/agents/examples/conversational_agent.ipynb): 一个说明如何创建优化了对话的代理的notebook。
 
+其他相关资源包括：
+- [内存关键概念](../modules/memory.rst)：关于内存相关的关键概念的解释。
+- [内存示例](../modules/memory/how_to_guides.rst)：一个关于如何使用内存的操作示例集合。
 
-Additional related resources include:
-- [Memory Key Concepts](../modules/memory.rst): Explanation of key concepts related to memory.
-- [Memory Examples](../modules/memory/how_to_guides.rst): A collection of how-to examples for working with memory.
-
-More end-to-end examples include:
-- [Voice Assistant](chatbots/voice_assistant.ipynb): A notebook walking through how to create a voice assistant using LangChain.
+更多端到端的示例包括：
+- [语音助手](chatbots/voice_assistant.ipynb)：一个教程笔记本，介绍如何使用LangChain创建一个语音助手。

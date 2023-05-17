@@ -1,40 +1,31 @@
-# Installation
+# 安装
 
-## Official Releases
+## 正式版本
 
-LangChain is available on PyPi, so to it is easily installable with:
-
+LangChain可以在PyPi上使用，因此可以轻松安装如下：
 ```
 pip install langchain
 ```
+这将安装LangChain的最基本要求。
+当与各种模型提供程序、数据存储等集成时，LangChain的价值才得以体现。
+默认情况下，需要用到的这些依赖关系不会被安装。
+然而，有另外两种安装LangChain的方式可以带来这些依赖关系。
 
-That will install the bare minimum requirements of LangChain.
-A lot of the value of LangChain comes when integrating it with various model providers, datastores, etc.
-By default, the dependencies needed to do that are NOT installed.
-However, there are two other ways to install LangChain that do bring in those dependencies.
-
-To install modules needed for the common LLM providers, run:
-
+要安装常见LLM提供程序所需的模块，请运行:
 ```
 pip install langchain[llms]
 ```
-
-To install all modules needed for all integrations, run:
-
+要安装所有集成所需的所有模块，请运行：
 ```
 pip install langchain[all]
 ```
-
-Note that if you are using `zsh`, you'll need to quote square brackets when passing them as an argument to a command, for example:
-
+注意：如果您正在使用`zsh`，在将方括号作为命令参数传递时，需要将它们引用起来，例如：
 ```
 pip install 'langchain[all]'
 ```
+## 从源码安装
 
-## Installing from source
-
-If you want to install from source, you can do so by cloning the repo and running:
-
+如果您想从源码安装，可以通过克隆代码库并运行以下命令来安装：
 ```
 pip install -e .
 ```

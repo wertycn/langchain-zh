@@ -1,17 +1,16 @@
 # StochasticAI
 
-This page covers how to use the StochasticAI ecosystem within LangChain.
-It is broken into two parts: installation and setup, and then references to specific StochasticAI wrappers.
+本页面将介绍如何在LangChain中使用StochasticAI生态系统。分为两部分：安装和设置，以及对特定StochasticAI包装器的引用。
 
-## Installation and Setup
-- Install with `pip install stochasticx`
-- Get an StochasticAI api key and set it as an environment variable (`STOCHASTICAI_API_KEY`)
+## 安装和设置
+- 使用 `pip install stochasticx` 进行安装
+- 获取StochasticAI api密钥并将其设置为环境变量(`STOCHASTICAI_API_KEY`)
 
-## Wrappers
+## 包装器
 
 ### LLM
 
-There exists an StochasticAI LLM wrapper, which you can access with 
+存在一个StochasticAI LLM包装器，您可以使用以下方式进行访问：
 ```python
 from langchain.llms import StochasticAI
 ```

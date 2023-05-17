@@ -1,68 +1,68 @@
-# Integrations
+# 集成
 
-Besides the installation of this python package, you will also need to install packages and set environment variables depending on which chains you want to use.
+除了安装这个Python包之外，您还需要安装其他的包并设置环境变量，具体取决于您想要使用哪些链。
 
-Note: the reason these packages are not included in the dependencies by default is that as we imagine scaling this package, we do not want to force dependencies that are not needed.
+注：默认情况下，这些包未包含在依赖项中，原因是我们想象这个包要扩展，我们不想强制使用不需要的依赖项。
 
-The following use cases require specific installs and api keys:
+以下使用情况需要特定的安装和API密钥：
 
 - _OpenAI_:
-  - Install requirements with `pip install openai`
-  - Get an OpenAI api key and either set it as an environment variable (`OPENAI_API_KEY`) or pass it to the LLM constructor as `openai_api_key`.
+  - 使用 `pip install openai` 安装所需的依赖项
+  - 获取OpenAI api key，并将其设置为环境变量 (`OPENAI_API_KEY`) 或将其传递到LLM构造函数中作为 `openai_api_key`。
 - _Cohere_:
-  - Install requirements with `pip install cohere`
-  - Get a Cohere api key and either set it as an environment variable (`COHERE_API_KEY`) or pass it to the LLM constructor as `cohere_api_key`.
+  - 使用 `pip install cohere` 安装所需的依赖项
+  - 获取Cohere的API密钥，并将其设置为环境变量 (`COHERE_API_KEY`) 或将其传递到LLM构造函数中作为 `cohere_api_key`。
 - _GooseAI_:
-  - Install requirements with `pip install openai`
-  - Get an GooseAI api key and either set it as an environment variable (`GOOSEAI_API_KEY`) or pass it to the LLM constructor as `gooseai_api_key`.
+  - 使用 `pip install openai` 安装所需的依赖项
+- 获取GooseAI的API密钥，将其设置为环境变量(`GOOSEAI_API_KEY`)或将其作为`gooseai_api_key`传递给LLM构造函数。
 - _Hugging Face Hub_
-  - Install requirements with `pip install huggingface_hub`
-  - Get a Hugging Face Hub api token and either set it as an environment variable (`HUGGINGFACEHUB_API_TOKEN`) or pass it to the LLM constructor as `huggingfacehub_api_token`.
+  - 使用`pip install huggingface_hub`命令安装所需的依赖。
+  - 获取Hugging Face Hub的API令牌，将其设置为环境变量(`HUGGINGFACEHUB_API_TOKEN`)或将其作为`huggingfacehub_api_token`传递给LLM构造函数。
 - _Petals_:
-  - Install requirements with `pip install petals`
-  - Get an GooseAI api key and either set it as an environment variable (`HUGGINGFACE_API_KEY`) or pass it to the LLM constructor as `huggingface_api_key`.
+  - 使用`pip install petals`命令安装所需的依赖。
+  - 获取GooseAI的API密钥，将其设置为环境变量(`HUGGINGFACE_API_KEY`)或将其作为`huggingface_api_key`传递给LLM构造函数。
 - _CerebriumAI_:
-  - Install requirements with `pip install cerebrium`
-  - Get a Cerebrium api key and either set it as an environment variable (`CEREBRIUMAI_API_KEY`) or pass it to the LLM constructor as `cerebriumai_api_key`.
+  - 使用`pip install cerebrium`命令安装所需的依赖。
+  - 获取Cerebrium的API密钥，将其设置为环境变量(`CEREBRIUMAI_API_KEY`)或将其作为`cerebriumai_api_key`传递给LLM构造函数。
 - _PromptLayer_:
-  - Install requirements with `pip install promptlayer` (be sure to be on version 0.1.62 or higher)
-  - Get an API key from [promptlayer.com](http://www.promptlayer.com) and set it using `promptlayer.api_key=<API KEY>`
+  - 使用`pip install promptlayer`命令安装所需的依赖（确保使用的版本为0.1.62或更高）。
+- 从[promptlayer.com](http://www.promptlayer.com)获取API密钥，并使用`promptlayer.api_key=<API KEY>`进行设置。
 - _SerpAPI_:
-  - Install requirements with `pip install google-search-results`
-  - Get a SerpAPI api key and either set it as an environment variable (`SERPAPI_API_KEY`) or pass it to the LLM constructor as `serpapi_api_key`.
+  - 使用`pip install google-search-results`安装所需的依赖。
+  - 获取SerpAPI api密钥，并将其设置为环境变量（`SERPAPI_API_KEY`）或将其作为参数传递给LLM构造函数中的`serpapi_api_key`。
 - _GoogleSearchAPI_:
-  - Install requirements with `pip install google-api-python-client`
-  - Get a Google api key and either set it as an environment variable (`GOOGLE_API_KEY`) or pass it to the LLM constructor as `google_api_key`. You will also need to set the `GOOGLE_CSE_ID` environment variable to your custom search engine id. You can pass it to the LLM constructor as `google_cse_id` as well.
+  - 使用`pip install google-api-python-client`安装所需的依赖。
+  - 获取Google api密钥，并将其设置为环境变量（`GOOGLE_API_KEY`）或将其作为参数传递给LLM构造函数中的`google_api_key`。您还需要设置`GOOGLE_CSE_ID`环境变量为您的自定义搜索引擎ID。您也可以将其作为参数传递给LLM构造函数中的`google_cse_id`。
 - _WolframAlphaAPI_:
-  - Install requirements with `pip install wolframalpha`
-  - Get a Wolfram Alpha api key and either set it as an environment variable (`WOLFRAM_ALPHA_APPID`) or pass it to the LLM constructor as `wolfram_alpha_appid`.
+  - 使用`pip install wolframalpha`安装所需的依赖。
+  - 获取Wolfram Alpha api密钥，并将其设置为环境变量（`WOLFRAM_ALPHA_APPID`）或将其作为参数传递给LLM构造函数中的`wolfram_alpha_appid`。
 - _NatBot_:
-  - Install requirements with `pip install playwright`
+- 使用 `pip install playwright` 安装必要的依赖项。
 - _Wikipedia_:
-  - Install requirements with `pip install wikipedia`
+  - 使用 `pip install wikipedia` 安装必要的依赖项。
 - _Elasticsearch_:
-  - Install requirements with `pip install elasticsearch`
-  - Set up Elasticsearch backend. If you want to do locally, [this](https://www.elastic.co/guide/en/elasticsearch/reference/7.17/getting-started.html) is a good guide.
+  - 使用 `pip install elasticsearch` 安装必要的依赖项。
+  - 设置 Elasticsearch 后端。如果您想在本地搭建，请参考 [这篇文章](https://www.elastic.co/guide/en/elasticsearch/reference/7.17/getting-started.html)。
 - _FAISS_:
-  - Install requirements with `pip install faiss` for Python 3.7 and `pip install faiss-cpu` for Python 3.10+.
-- _MyScale_
-  - Install requirements with `pip install clickhouse-connect`. For documentations, please refer to [this document](https://docs.myscale.com/en/overview/).
+  - 对于 Python3.7，请使用 `pip install faiss` 安装必要的依赖项；对于 Python3.10+，请使用 `pip install faiss-cpu`。
+- _MyScale_：
+  - 使用 `pip install clickhouse-connect` 安装必要的依赖项。有关文档，请参阅[此文档](https://docs.myscale.com/en/overview/)。
 - _Manifest_:
-  - Install requirements with `pip install manifest-ml` (Note: this is only available in Python 3.8+ currently).
+  - 使用 `pip install manifest-ml` 安装必要的依赖项。（注意：目前只在 Python 3.8+ 中可用）。
 - _OpenSearch_:
-  - Install requirements with `pip install opensearch-py`
-  - If you want to set up OpenSearch on your local, [here](https://opensearch.org/docs/latest/)
+  - 使用 `pip install opensearch-py` 安装必要的依赖项。
+  - 如果您希望在本地设置 OpenSearch，请参考[这篇文章](https://opensearch.org/docs/latest/)。
 - _DeepLake_:
-  - Install requirements with `pip install deeplake`
+- 使用 `pip install deeplake` 安装所需的依赖。
 - _LlamaCpp_:
-  - Install requirements with `pip install llama-cpp-python`
-  - Download model and convert following [llama.cpp instructions](https://github.com/ggerganov/llama.cpp)
+  - 使用 `pip install llama-cpp-python` 安装所需的依赖。
+  - 下载模型并按照 [llama.cpp 说明](https://github.com/ggerganov/llama.cpp) 进行转换。
 - _Milvus_:
-  - Install requirements with `pip install pymilvus`
-  - In order to setup a local cluster, take a look [here](https://milvus.io/docs).
+  - 使用 `pip install pymilvus` 安装所需的依赖。
+  - 如果想设置本地群集，请参考[这里](https://milvus.io/docs)。
 - _Zilliz_:
-  - Install requirements with `pip install pymilvus`
-  - To get up and running, take a look [here](https://zilliz.com/doc/quick_start).
+  - 使用 `pip install pymilvus` 安装所需的依赖。
+  - 要快速上手，请参考[这里](https://zilliz.com/doc/quick_start)。
 
 
-If you are using the `NLTKTextSplitter` or the `SpacyTextSplitter`, you will also need to install the appropriate models. For example, if you want to use the `SpacyTextSplitter`, you will need to install the `en_core_web_sm` model with `python -m spacy download en_core_web_sm`. Similarly, if you want to use the `NLTKTextSplitter`, you will need to install the `punkt` model with `python -m nltk.downloader punkt`.
+如果您使用的是 `NLTKTextSplitter` 或者 `SpacyTextSplitter`，还需要安装相应的模型。例如，如果您想使用 `SpacyTextSplitter`，则需要使用 `python -m spacy download en_core_web_sm` 命令安装 `en_core_web_sm` 模型。同样，如果您想使用 `NLTKTextSplitter`，则需要使用 `python -m nltk.downloader punkt` 命令安装 `punkt` 模型。

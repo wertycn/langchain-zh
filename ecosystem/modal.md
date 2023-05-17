@@ -1,16 +1,15 @@
-# Modal
+# 模态
 
-This page covers how to use the Modal ecosystem within LangChain.
-It is broken into two parts: installation and setup, and then references to specific Modal wrappers.
+本页面讲解如何在LangChain中使用模态生态系统。
+它分为两个部分：安装和设置，以及特定的模态包装器的引用。
 
-## Installation and Setup
-- Install with `pip install modal-client`
-- Run `modal token new`
+## 安装和设置
+- 使用 `pip install modal-client` 进行安装
+- 运行 `modal token new`
 
-## Define your Modal Functions and Webhooks
+## 定义您的模态函数和Webhooks
 
-You must include a prompt. There is a rigid response structure.
-
+您必须包含提示。存在严格的响应结构。
 ```python
 class Item(BaseModel):
     prompt: str
@@ -19,9 +18,7 @@ class Item(BaseModel):
 def my_webhook(item: Item):
     return {"prompt": my_function.call(item.prompt)}
 ```
-
-An example with GPT2:
-
+使用GPT2的示例：
 ```python
 from pydantic import BaseModel
 
@@ -55,12 +52,11 @@ class Item(BaseModel):
 def get_text(item: Item):
     return {"prompt": run_gpt2.call(item.prompt)}
 ```
-
-## Wrappers
+## 封装器
 
 ### LLM
 
-There exists an Modal LLM wrapper, which you can access with 
+存在一个Modal LLM封装器，您可以使用以下方式访问：
 ```python
 from langchain.llms import Modal
 ```

@@ -1,16 +1,15 @@
 # ForefrontAI
 
-This page covers how to use the ForefrontAI ecosystem within LangChain.
-It is broken into two parts: installation and setup, and then references to specific ForefrontAI wrappers.
+本页面介绍如何在LangChain中使用ForefrontAI生态系统。页面分两部分：安装和设置，以及对特定ForefrontAI包装器的引用。
 
-## Installation and Setup
-- Get an ForefrontAI api key and set it as an environment variable (`FOREFRONTAI_API_KEY`)
+## 安装和设置
+- 获取ForefrontAI API密钥并将其设置为环境变量 (`FOREFRONTAI_API_KEY`)
 
-## Wrappers
+## 包装器
 
 ### LLM
 
-There exists an ForefrontAI LLM wrapper, which you can access with 
+ForefrontAI LLM存在一个包装器，您可以使用以下代码来访问：
 ```python
 from langchain.llms import ForefrontAI
 ```

@@ -1,18 +1,18 @@
 # Jina
 
-This page covers how to use the Jina ecosystem within LangChain.
-It is broken into two parts: installation and setup, and then references to specific Jina wrappers.
+本页介绍如何在LangChain中使用Jina生态系统。
+它分为两个部分：安装和设置，以及特定Jina包装器的参考。
 
-## Installation and Setup
-- Install the Python SDK with `pip install jina`
-- Get a Jina AI Cloud auth token from [here](https://cloud.jina.ai/settings/tokens) and set it as an environment variable (`JINA_AUTH_TOKEN`)
+## 安装和设置
+- 使用 `pip install jina` 安装Python SDK
+- 从 [此处](https://cloud.jina.ai/settings/tokens) 获取Jina AI Cloud授权令牌，并将其设置为环境变量(`JINA_AUTH_TOKEN`)
 
-## Wrappers
+## 包装器
 
-### Embeddings
+### 嵌入
 
-There exists a Jina Embeddings wrapper, which you can access with 
+存在一个Jina嵌入包装器，您可以使用以下命令访问：
 ```python
 from langchain.embeddings import JinaEmbeddings
 ```
-For a more detailed walkthrough of this, see [this notebook](../modules/models/text_embedding/examples/jina.ipynb)
+如需更详细的步骤说明，请参阅[此笔记本](../modules/models/text_embedding/examples/jina.ipynb)。

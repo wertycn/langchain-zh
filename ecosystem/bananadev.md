@@ -1,31 +1,25 @@
-# Banana
+# 香蕉
 
-This page covers how to use the Banana ecosystem within LangChain.
-It is broken into two parts: installation and setup, and then references to specific Banana wrappers.
+本页介绍如何在LangChain中使用香蕉生态系统。内容分为两部分：安装和设置，以及具体的香蕉包装器参考。
 
-## Installation and Setup
+## 安装和设置
 
-- Install with `pip install banana-dev`
-- Get an Banana api key and set it as an environment variable (`BANANA_API_KEY`)
+- 使用 `pip install banana-dev` 安装
+- 获取一个香蕉API密钥并将其设置为环境变量（`BANANA_API_KEY`）
 
-## Define your Banana Template
+## 定义您的香蕉模板
 
-If you want to use an available language model template you can find one [here](https://app.banana.dev/templates/conceptofmind/serverless-template-palmyra-base).
-This template uses the Palmyra-Base model by [Writer](https://writer.com/product/api/).
-You can check out an example Banana repository [here](https://github.com/conceptofmind/serverless-template-palmyra-base).
+如果您想使用一个可用的语言模型模板，您可以在[此处](https://app.banana.dev/templates/conceptofmind/serverless-template-palmyra-base)找到一个。
+此模板使用[Writer](https://writer.com/product/api/)的Palmyra-Base模型。您可以在[此处](https://github.com/conceptofmind/serverless-template-palmyra-base)查看一个香蕉示例存储库。
 
-## Build the Banana app
+## 构建香蕉应用
 
-Banana Apps must include the "output" key in the return json. 
-There is a rigid response structure.
-
+香蕉应用必须在json返回中包含“output”键。存在严格的响应结构。
 ```python
 # Return the results as a dictionary
 result = {'output': result}
 ```
-
-An example inference function would be:
-
+一个例子推理函数如下：
 ```python
 def inference(model_inputs:dict) -> dict:
     global model
@@ -59,21 +53,17 @@ def inference(model_inputs:dict) -> dict:
     result = {'output': result}
     return result
 ```
+您可以在[这里](https://github.com/conceptofmind/serverless-template-palmyra-base/blob/main/app.py)找到一个完整的Banana应用程序示例。
 
-You can find a full example of a Banana app [here](https://github.com/conceptofmind/serverless-template-palmyra-base/blob/main/app.py).
+## 包装器
 
-## Wrappers
+### 语言模型
 
-### LLM
-
-There exists an Banana LLM wrapper, which you can access with
-
+LangChain提供了一个Banana语言模型的包装器，您可以使用以下命令进行访问：
 ```python
 from langchain.llms import Banana
 ```
-
-You need to provide a model key located in the dashboard:
-
+您需要提供仪表板中的模型密钥：
 ```python
 llm = Banana(model_key="YOUR_MODEL_KEY")
 ```

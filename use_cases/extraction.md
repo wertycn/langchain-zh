@@ -1,23 +1,15 @@
-# Extraction
+# 提取
 
-> [Conceptual Guide](https://docs.langchain.com/docs/use-cases/extraction)
+> [概念指南](https://docs.langchain.com/docs/use-cases/extraction)
 
 
-Most APIs and databases still deal with structured information.
-Therefore, in order to better work with those, it can be useful to extract structured information from text.
-Examples of this include:
+大多数API和数据库仍然处理结构化信息。因此，为了更好地处理这些信息，从文本中提取出结构化信息将会很有用。以下是一些例子：
 
-- Extracting a structured row to insert into a database from a sentence
-- Extracting multiple rows to insert into a database from a long document
-- Extracting the correct API parameters from a user query
+- 从一个句子中提取结构化行以插入到数据库中。
+- 从一个长文档中提取多个行以插入到数据库中。
+- 从用户查询中提取正确的API参数。
 
-This work is extremely related to [output parsing](../modules/prompts/output_parsers.rst).
-Output parsers are responsible for instructing the LLM to respond in a specific format.
-In this case, the output parsers specify the format of the data you would like to extract from the document.
-Then, in addition to the output format instructions, the prompt should also contain the data you would like to extract information from.
+这项工作与[输出解析](../modules/prompts/output_parsers.rst)密切相关。输出解析器负责指导 LLM 以特定格式进行响应。在这种情况下，输出解析器规定了您从文档中提取数据的格式。此外，除了输出格式指令之外，提示还应包含您想要提取信息的数据。
 
-While normal output parsers are good enough for basic structuring of response data,
-when doing extraction you often want to extract more complicated or nested structures.
-For a deep dive on extraction, we recommend checking out [`kor`](https://eyurtsev.github.io/kor/),
-a library that uses the existing LangChain chain and OutputParser abstractions
-but deep dives on allowing extraction of more complicated schemas.
+虽然普通的输出解析器已经足够用于响应数据的基本结构，
+在进行提取时，您经常需要提取更复杂或嵌套的结构。如果您想要深入了解提取功能，我们建议您查看 [`kor`](https://eyurtsev.github.io/kor/)。该库使用现有的LangChain链和OutputParser抽象，但更深入地讲解如何允许提取更复杂的模式。

@@ -1,33 +1,30 @@
-# Querying Tabular Data
+# 查询表格数据
 
-> [Conceptual Guide](https://docs.langchain.com/docs/use-cases/qa-tabular)
+> [概念指南](https://docs.langchain.com/docs/use-cases/qa-tabular)
 
 
-Lots of data and information is stored in tabular data, whether it be csvs, excel sheets, or SQL tables.
-This page covers all resources available in LangChain for working with data in this format.
+大量的数据和信息存储在表格数据中，无论是csv，Excel工作表还是SQL表。
+本页面涵盖了LangChain可用于处理此格式数据的所有资源。
 
-## Document Loading
-If you have text data stored in a tabular format, you may want to load the data into a Document and then index it as you would
-other text/unstructured data. For this, you should use a document loader like the [CSVLoader](../modules/indexes/document_loaders/examples/csv.ipynb)
-and then you should [create an index](../modules/indexes.rst) over that data, and [query it that way](../modules/chains/index_examples/vector_db_qa.ipynb).
+## 加载文档
+如果您有存储在表格格式中的文本数据，您可能希望将数据加载到文档中，然后像处理其他文本/非结构化数据一样对其进行索引。
+为此，您应该使用类似[CSVLoader](../modules/indexes/document_loaders/examples/csv.ipynb)的文档加载器，
+然后您应该[创建索引](../modules/indexes.rst)并[使用这种方式查询](../modules/chains/index_examples/vector_db_qa.ipynb)。
 
-## Querying
-If you have more numeric tabular data, or have a large amount of data and don't want to index it, you should get started
-by looking at various chains and agents we have for dealing with this data.
+## 查询
+如果您有更多的数字表格数据，或者有大量数据并且不想对其进行索引，您应该查看我们用于处理这些数据的各种链和代理。
 
-### Chains
+### 链
+如果您刚开始使用LangChain，并且有相对较小/简单的表格数据，那么您应该使用 chains 来入门。
+chains 是一系列预定步骤，可以帮助您更好地掌握并控制正在发生的事情。
 
-If you are just getting started, and you have relatively small/simple tabular data, you should get started with chains.
-Chains are a sequence of predetermined steps, so they are good to get started with as they give you more control and let you 
-understand what is happening better.
-
-- [SQL Database Chain](../modules/chains/examples/sqlite.ipynb)
+- [SQL 数据库 Chains](../modules/chains/examples/sqlite.ipynb)
 
 ### Agents
 
-Agents are more complex, and involve multiple queries to the LLM to understand what to do.
-The downside of agents are that you have less control. The upside is that they are more powerful,
-which allows you to use them on larger databases and more complex schemas. 
+Agents 更加复杂，需要对LLM进行多个查询才能理解要做什么。
+Agents 的缺点是您的控制力更少。优点是它们更加强大，
+可以用于更大的数据库和更复杂的模式。
 
 - [SQL Agent](../modules/agents/toolkits/examples/sql_database.ipynb)
 - [Pandas Agent](../modules/agents/toolkits/examples/pandas.ipynb)
